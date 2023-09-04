@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import edit from "../img/edit.svg";
-import PopupWithForm from "./PopupWithForm";
 import api from "../utils/Api";
 import Card from "./Card";
 
@@ -11,14 +10,20 @@ export default function Main(props) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getCurrentUserApi().then((res) => {
-      setUserName(res.name);
-      setUserDescription(res.about);
-      setUserAvatar(res.avatar);
-    });
-    api.getAllCardsApi().then((res) => {
-      setCards(res);
-    });
+    api
+      .getCurrentUserApi()
+      .then((res) => {
+        setUserName(res.name);
+        setUserDescription(res.about);
+        setUserAvatar(res.avatar);
+      })
+      .catch((err) => console.log(err));
+    api
+      .getAllCardsApi()
+      .then((res) => {
+        setCards(res);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -55,94 +60,10 @@ export default function Main(props) {
       <section className="elements" aria-label="Карточки">
         <ul className="elements__list">
           {cards.map((card) => (
-            <Card data={card} onCardClick={props.onCardClick} />
+            <Card data={card} onCardClick={props.onCardClick} key={card._id} />
           ))}
         </ul>
       </section>
-      <PopupWithForm
-        name="edit"
-        title="Редактировать профиль"
-        isOpen={props.isEditProfilePopupOpen}
-        onClose={props.onClose}
-      >
-        <input
-          type="text"
-          placeholder="Введите имя"
-          className="popup__input popup__input_type_name"
-          id="name"
-          name="name"
-          minLength="2"
-          maxLength="40"
-          required
-        />
-        <span className="popup__input-error name-error"></span>
-        <input
-          type="text"
-          placeholder="Расскажите о себе"
-          className="popup__input popup__input_type_about"
-          id="about"
-          name="about"
-          minLength="2"
-          maxLength="200"
-          required
-        />
-        <span className="popup__input-error about-error"></span>
-        <button className="popup__button" type="submit">
-          Сохранить
-        </button>
-      </PopupWithForm>
-      <PopupWithForm
-        name="card"
-        title="Новое место"
-        isOpen={props.isAddPlacePopupOpen}
-        onClose={props.onClose}
-      >
-        <input
-          type="text"
-          placeholder="Название"
-          className="popup__input popup__input_type_card-name"
-          id="picture-name"
-          name="name"
-          minLength="2"
-          maxLength="30"
-          required
-        />
-        <span className="popup__input-error picture-name-error"></span>
-        <input
-          type="url"
-          placeholder="Ссылка на картинку"
-          className="popup__input popup__input_type_image-url"
-          id="link"
-          name="link"
-          required
-        />
-        <span className="popup__input-error link-error"></span>
-        <button className="popup__button" type="submit">
-          Создать
-        </button>
-      </PopupWithForm>
-      <PopupWithForm
-        name="avatar"
-        title="Обновить аватар"
-        isOpen={props.isEditAvatarPopupOpen}
-        onClose={props.onClose}
-      >
-        <input
-          type="url"
-          placeholder="Ссылка на изображение"
-          className="popup__input popup__input_type_avatar-url"
-          id="avatar-link"
-          name="avatar"
-          required
-        />
-        <span className="popup__input-error avatar-link-error"></span>
-        <button className="popup__button" type="submit">
-          Сохранить
-        </button>
-      </PopupWithForm>
-      <PopupWithForm name="delete" title="Вы уверены?">
-        <button className="popup__button popup__delete-button">Да</button>
-      </PopupWithForm>
     </main>
   );
 }

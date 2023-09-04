@@ -15,6 +15,9 @@ export default function PopupWithForm(props) {
           noValidate
         >
           {props.children}
+          <button className="popup__button" type="submit">
+            {props.buttonTitle}
+          </button>
         </form>
         <button
           onClick={props.onClose}

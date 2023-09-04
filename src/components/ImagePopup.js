@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ImagePopup(props) {
   return (
-    <div className={`popup popup_type_picture ${props.card && "popup_opened"}`}>
+    <div className={`popup popup_type_picture ${props.card.name && "popup_opened"}`}>
       <div className="popup__picture-container">
         <figure className="popup__picture">
           <img

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Card(props) {
   return (
-    <li className="element" key={props.data._id}>
+    <li className="element">
       <div className="element__image-container">
         <img
           className="element__image"
