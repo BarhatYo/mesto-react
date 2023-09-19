@@ -24,7 +24,7 @@ class Api {
 
   changeLikeApi(cardId, isLiked) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-      method: isLiked ? "DELETE" : "PUT",
+      method: isLiked ? "PUT" : "DELETE",
       headers: this.headers,
     }).then(this.onResponse);
   }
@@ -55,7 +55,7 @@ class Api {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify(userInfo),
-    }).then(this.onResponce);
+    }).then(this.onResponse);
   }
 
   changeUserAvatarApi(avatarLink) {
@@ -63,7 +63,7 @@ class Api {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify(avatarLink),
-    }).then(this.onResponce);
+    }).then(this.onResponse);
   }
 }
 

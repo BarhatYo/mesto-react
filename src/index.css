@@ -19,6 +19,7 @@
 @import "./blocks/popup/__image/popup__image.css";
 @import "./blocks/popup/__title/_type/popup__title_type_delete.css";
 @import "./blocks/element/__heart-button/element__heart-button.css";
+@import "./blocks/element/__heart-button/_active/element__heart-button_active.css";
 @import "./blocks/element/__image/element__image.css";
 @import "./blocks/element/__name/element__name.css";
 @import "./blocks/element/__text/element__text.css";
