@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import edit from "../img/edit.svg";
-import api from "../utils/Api";
 import Card from "./Card";
 
 export default function Main(props) {
@@ -45,7 +44,13 @@ export default function Main(props) {
       <section className="elements" aria-label="Карточки">
         <ul className="elements__list">
           {props.cards.map((card) => (
-            <Card card={card} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete} key={card._id} />
+            <Card
+              card={card}
+              onCardClick={props.onCardClick}
+              onCardLike={props.onCardLike}
+              onCardDelete={props.onCardDelete}
+              key={card._id}
+            />
           ))}
         </ul>
       </section>

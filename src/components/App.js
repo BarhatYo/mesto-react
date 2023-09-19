@@ -65,35 +65,42 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
-    api.removeCardApi(card._id).then(() => {
-      setCards((cards) => cards.filter((c) => c._id !== card._id)).catch(
-        (err) => console.log(err),
-      );
-    });
+    api
+      .removeCardApi(card._id)
+      .then(() => {
+        setCards((cards) => cards.filter((c) => c._id !== card._id))
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleUpdateUser = (data) => {
     api
       .changeUserInfoApi(data)
-      .then((data) => setCurrentUser(data))
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
       .catch((err) => console.log(err));
-    closeAllPopups();
   };
 
   const handleUpdateAvatar = (avatar) => {
     api
       .changeUserAvatarApi(avatar)
-      .then((avatar) => setCurrentUser(avatar))
+      .then((avatar) => {
+        setCurrentUser(avatar);
+        closeAllPopups();
+      })
       .catch((err) => console.log(err));
-    closeAllPopups();
   };
 
   const handleAddPlaceSubmit = (newPlace) => {
     api
       .addCardApi(newPlace)
-      .then((newPlace) => setCards([newPlace, ...cards]))
+      .then((newPlace) => {
+        setCards([newPlace, ...cards]);
+        closeAllPopups();
+      })
       .catch((err) => console.log(err));
-    closeAllPopups();
   };
 
   return (

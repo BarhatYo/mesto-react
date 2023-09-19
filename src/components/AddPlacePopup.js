@@ -1,26 +1,27 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function AddPlacePopup(props) {
-  const [name, setName] = useState('');
-  const [link, setLink] = useState('');
+  const [name, setName] = useState("");
+  const [link, setLink] = useState("");
 
   const handleName = (evt) => {
     setName(evt.target.value);
-  }
-
+  };
 
   const handleLink = (evt) => {
     setLink(evt.target.value);
-  }
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
     props.onAddPlace({
       name,
-      link
+      link,
     });
+    setName("");
+    setLink("");
   };
 
   return (
